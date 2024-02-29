@@ -40,25 +40,25 @@ func (tree *BinaryTree) IsEmpty() bool {
 }
 
 func (tree *BinaryTree) Insert(value int) {
-	if tree.Head == nil {
+	if tree.IsEmpty() {
 		tree.Head = &TreeNode{Value: value}
 	} else {
-		tree.Head.insert(value)
+		tree.insert(value, tree.Head)
 	}
 }
 
-func (node *TreeNode) insert(value int) {
-	if value > node.Value {
-		if node.Right == nil {
-			node.Right = &TreeNode{Value: value}
+func (tree *BinaryTree) insert(value int, curr *TreeNode) {
+	if value > curr.Value {
+		if curr.Right == nil {
+			curr.Right = &TreeNode{Value: value}
 		} else {
-			node.Right.insert(value)
+			tree.insert(value, curr.Right)
 		}
 	} else {
-		if node.Left == nil {
-			node.Left = &TreeNode{Value: value}
+		if curr.Left == nil {
+			curr.Left = &TreeNode{Value: value}
 		} else {
-			node.Left.insert(value)
+			tree.insert(value, curr.Left)
 		}
 	}
 }
