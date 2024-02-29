@@ -1,4 +1,4 @@
-package main
+package linked_list 
 
 import (
 	"errors"
@@ -14,7 +14,7 @@ type Node struct {
 	Next  *Node
 }
 
-func main() {
+func MainLinkedList() {
 	l := NewList()
 	l.InsertLast(20)
 	l.InsertLast(30)
