@@ -1,6 +1,8 @@
 package bst
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type BinaryTree struct {
 	Head *TreeNode
@@ -21,7 +23,10 @@ func MainBST() {
 	tree.Insert(9)
 	tree.Insert(16)
 
-    tree.PreOrder(tree.Head)
+    tree.Search(12)
+    tree.Search(8)
+
+	tree.PreOrder(tree.Head)
 }
 
 func NewBST() *BinaryTree {
@@ -55,6 +60,27 @@ func (node *TreeNode) insert(value int) {
 		} else {
 			node.Left.insert(value)
 		}
+	}
+}
+
+func (tree *BinaryTree) Search(value int) {
+	if tree.IsEmpty() {
+		fmt.Println("The list is empty!")
+		return 
+	}
+
+    fmt.Println(tree.search(value, tree.Head))
+}
+
+func (tree *BinaryTree) search(value int, curr *TreeNode) (int) {
+    if curr == nil {
+        return -1
+    } else if value == curr.Value {
+		return curr.Value
+	} else if value > curr.Value {
+		return tree.search(value, curr.Right)
+	} else {
+		return tree.search(value, curr.Left)
 	}
 }
 
